@@ -13,14 +13,14 @@ Constraints:
 
 class Solution:
     def checkStraightLine(self, coordinates: List[List[int]]) -> bool:
-        if len(coordinates) == 2: // check if only two points are given
+        if len(coordinates) == 2: #check if only two points are given
             return True
         else:
-            if coordinates[1][0]-coordinates[0][0] != 0:  //in case x-co-ordinates are same, parallel to y-axis, to avoid zero division error
+            if coordinates[1][0]-coordinates[0][0] != 0:  #in case x-co-ordinates are same, parallel to y-axis, to avoid zero division error
                 slope = (coordinates[1][1]-coordinates[0][1])/(coordinates[1][0]-coordinates[0][0])
                 i=2
                 while i<len(coordinates):
-                    if coordinates[i][0]-coordinates[0][0]==0:  //points can't be parallel to y-axis, as that check was already done above
+                    if coordinates[i][0]-coordinates[0][0]==0:  #points can't be parallel to y-axis, as that check was already done above
                         return False
                     else:
                         new_slope = (coordinates[i][1]-coordinates[0][1])/(coordinates[i][0]-coordinates[0][0])
@@ -28,7 +28,7 @@ class Solution:
                             return False
                     i=i+1
                 return True
-            else:   //checking for line parallel to y-axis whose slope is undefined
+            else:   #checking for line parallel to y-axis whose slope is undefined
                 i=1
                 while i<len(coordinates):
                     if coordinates[i][0]!=coordinates[0][0]:
