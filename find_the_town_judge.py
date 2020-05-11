@@ -37,8 +37,6 @@ Example 5:
 Input: N = 4, trust = [[1,3],[1,4],[2,3],[2,4],[4,3]]
 Output: 3
 
- 
-
 Note:
 
     1 <= N <= 1000
@@ -51,26 +49,25 @@ Note:
 class Solution:
     def findJudge(self, N: int, trust: list) -> int:
         tl = {}
-        for i in trust:
+        for i in trust:                                      #updating a trusted list for each person
             if i[0] not in tl.keys():
                 tl.update({i[0]:[i[1]]})
             else:
                 arr = tl.get(i[0])
                 arr.append(i[1])
                 tl.update({i[0]:arr})
-        if len(list(tl.keys())) != N-1:
+        if len(list(tl.keys())) != N-1:      #to check if only N-1 people trust others
             return -1
         else:
-            judge = set(range(1,N+1))-set(list(tl.keys()))
+            judge = set(range(1,N+1))-set(list(tl.keys()))   #getting the judge out
             if len(judge) != 1:
                 return -1
             else:
                 print(list(judge))
                 for i in list(tl.values()):
-                    if list(judge)[0] not in i:
+                    if list(judge)[0] not in i:      #checking if judge is being trusted by everyone
                         return -1
                 return list(judge)[0]
-
 
 s = Solution()
 s.findJudge(4,[[1,3],[1,4],[2,3],[2,4],[4,3]])
