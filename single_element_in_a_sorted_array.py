@@ -18,9 +18,17 @@ Note: Your solution should run in O(log n) time and O(1) space.
 
 class Solution:
     def singleNonDuplicate(self, nums: list) -> int:
-        a = 2*sum(set(nums))-sum(nums)
-        return a
+        #a = 2*sum(set(nums))-sum(nums)
+        low=0
+        high=len(nums)-1
+        while low < high:
+            mid=(low+high)//2
+            if (mid%2==0 and nums[mid]==nums[mid+1]) or (mid%2==1 and nums[mid]==nums[mid-1]):
+                low=mid+1
+            else:
+                high=mid
+        return nums[low]
 
 s=Solution()
-a=s.singleNonDuplicate([1,1,2,3,3])
+a=s.singleNonDuplicate([1])
 print(a)
